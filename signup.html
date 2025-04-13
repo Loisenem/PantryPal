@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="./styles/signup.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <script src="./scripts/script.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="logo"><h2>My Sign up Page</h2></div>
+    <nav>
+      <ul>
+        <li><a href="index.html"><h3>Back to Search</h3></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="signup-section">
+    <div class="signup-box">
+      <h2>Create an Account</h2>
+      <form action="/signup" method="POST" onsubmit="return validateForm()">
+        <input type="text" id="username" name="username" placeholder="Username" required />
+        <input type="email" id="email" name="email" placeholder="Email" required />
+        <input type="password" id="password" name="password" placeholder="Password" required oninput="checkPasswordStrength()" />
+        <div id="strength-indicator" class="strength-indicator">Password strength: <span id="strength-text">-</span></div>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required />
+        <p id="error-message" class="error-message"></p>
+        <button type="submit">Sign Up</button>
+        <p class="signup-link">
+          Already have an account? <a href="login.html">Login</a>
+        </p>
+      </form>
+      
+      
+    </div>
+  </section>
+
+  <script>
+    function checkPasswordStrength() {
+      const password = document.getElementById("password").value;
+      const strengthText = document.getElementById("strength-text");
+  
+      let strength = 0;
+  
+      if (password.length >= 8) strength++;
+      if (/[A-Z]/.test(password)) strength++;
+      if (/[0-9]/.test(password)) strength++;
+      if (/[^A-Za-z0-9]/.test(password)) strength++;
+  
+      if (strength === 0) {
+        strengthText.textContent = "-";
+        strengthText.className = "";
+      } else if (strength <= 1) {
+        strengthText.textContent = "Weak";
+        strengthText.className = "weak";
+      } else if (strength === 2 || strength === 3) {
+        strengthText.textContent = "Medium";
+        strengthText.className = "medium";
+      } else {
+        strengthText.textContent = "Strong";
+        strengthText.className = "strong";
+      }
+    }
+  
+    function validateForm() {
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+      const errorMessage = document.getElementById("error-message");
+  
+      if (password !== confirmPassword) {
+        errorMessage.textContent = "Passwords do not match.";
+        return false;
+      }
+  
+      if (password.length < 8) {
+        errorMessage.textContent = "Password must be at least 8 characters.";
+        return false;
+      }
+  
+      errorMessage.textContent = "";
+      return true;
+    }
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,365 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #111;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background: black;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    font-size: 120%;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: url('../images/Muschel-Spaghetti in Tomatensugo.jpeg') center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.3));
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    color: #fff;
+}
+
+.hero span {
+    color: #fff;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #d4a373;
+    color: black;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.search-container {
+    text-align: center;
+    margin: 40px auto;
+    max-width: 500px;
+    position: relative;
+}
+
+#search {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid #d4a373;
+    border-radius: 5px;
+    background: #222;
+    color: white;
+}
+
+#suggestions {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0;
+    background: #333;
+    position: absolute;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+}
+
+#suggestions li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #444;
+    color: white;
+}
+
+#suggestions li:hover {
+    background: #444;
+}
+
+#search-btn {
+    margin-top: 15px;
+    background: #d4a373;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+#search-btn:hover {
+    background: #b9835a;
+}
+
+.hidden {
+    display: none;
+}
+
+#loader {
+    border: 5px solid #222;
+    border-top: 5px solid #d4a373;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+#results {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.recipe {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.recipe:hover {
+    transform: scale(1.05);
+}
+
+.recipe img {
+    width: 120px;
+    height: 120px;
+    border-radius: 10%;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+.recipe h3 {
+    font-size: 1.4rem;
+    color: #fff;
+    margin: 10px 0;
+    flex-grow: 1;
+}
+
+.recipe p {
+    font-size: 1rem;
+    color: #aaa;
+    margin: 5px 0;
+}
+
+.recipe a {
+    display: inline-block;
+    background: #d4a373;
+    color: black;
+    padding: 10px 14px;
+    margin-top: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.recipe a:hover {
+    background: #e5b889;
+}
+
+@media (max-width: 1024px) {
+    #results {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 900px;
+    }
+}
+
+@media (max-width: 768px) {
+    #results {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 480px) {
+    #results {
+        grid-template-columns: repeat(1, 1fr);
+        max-width: 300px;
+    }
+}
+
+.menu {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.menu h2 {
+    font-size: 2.2rem;
+}
+
+.menu-items {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.dish {
+    background: #222;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.dish img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.testimonials {
+    text-align: center;
+    padding: 50px 20px;
+    color: white;    background: url('https://media.istockphoto.com/id/2166449526/photo/fresh-salads-overhead-flat-lay-shot-of-an-assortment-variety-of-plates.jpg?s=612x612&w=0&k=20&c=JiE9aHFRugUtzBLw49E2gw9XJBrm8y8Mw_p0bQdWWQU=') center/cover no-repeat; 
+
+}
+
+.reviews {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.review {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.contact {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+form input, form textarea {
+    width: 50%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contact-info {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;
+    width: 300px;
+    text-align: left;
+}
+
+.contact-info h3 {
+    color: #d4a373;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    color: #ccc;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+    max-width: 400px;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-info {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+button {
+    padding: 10px 20px;
+    background: #d4a373;
+    border: none;
+    cursor: pointer;
+}
+
+main {
+    flex: 1;
+  }
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: black;
+}
+.favorites-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  .favorites-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+    
