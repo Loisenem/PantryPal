@@ -132,23 +132,39 @@ function displayRecipes(recipes) {
     )
     .join("");
 
-  document.querySelectorAll(".favorite-btn").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      const recipeId = event.target.dataset.id;
-      const recipeTitle = event.target.dataset.title;
-      const recipeImage = event.target.dataset.image;
-
-      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-      favorites.push({
-        id: recipeId,
-        title: recipeTitle,
-        image: recipeImage,
+    document.querySelectorAll(".favorite-btn").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        const loggedInUser = localStorage.getItem("loggedInUser");
+        
+        if (!loggedInUser) {
+          alert("You need to log in to save recipes to favorites.");
+          window.location.href = "login.html"; 
+          return;
+        }
+    
+        const recipeId = event.target.dataset.id;
+        const recipeTitle = event.target.dataset.title;
+        const recipeImage = event.target.dataset.image;
+    
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        
+        const alreadySaved = favorites.find(fav => fav.id === recipeId);
+        if (alreadySaved) {
+          alert(`${recipeTitle} is already in your favorites.`);
+          return;
+        }
+    
+        favorites.push({
+          id: recipeId,
+          title: recipeTitle,
+          image: recipeImage,
+        });
+    
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert(`${recipeTitle} saved to favorites!`);
       });
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-
-      alert(`${recipeTitle} saved to favorites!`);
     });
-  });
+    
 }
 
 function saveToFavorites(recipe) {
